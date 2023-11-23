@@ -2,6 +2,7 @@ import ollama, { GenerateRequest } from "@/lib/ollama.ts";
 import { HandlerContext } from "$fresh/server.ts";
 import { ulid } from "https://deno.land/x/ulid@v0.3.0/mod.ts";
 import { Message } from "@/lib/chatml.ts";
+import { parseMarkdown } from "https://deno.land/x/markdown_wasm/mod.ts";
 
 const model = "xe/mimi:7b";
 
@@ -59,7 +60,7 @@ export const handler = (req: Request, ctx: HandlerContext): Response => {
 
     const assistantMessage: Message = {
       role: "assistant",
-      content: response.response,
+      content: parseMarkdown(response.response.trim()),
       id: assistantMessageID,
     };
 
@@ -74,7 +75,7 @@ export const handler = (req: Request, ctx: HandlerContext): Response => {
     );
 
     socket.send(
-      JSON.stringify({ response: response.response.trim(), done: true }),
+      JSON.stringify({ response: assistantMessage.content, done: true }),
     );
 
     // for await (

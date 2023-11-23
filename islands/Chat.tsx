@@ -54,17 +54,15 @@ export default function Chat(props: ChatProps) {
         Connect
       </Button>
 
-      <div className="max-w-2xl mx-auto">
-        {messages.map((message: Message) => (
-          <ChatBubble
-            id={message.id}
-            bg={message.role === "assistant" ? "green-300" : "blue-300"}
-            reply={message.role === "assistant"}
-          >
-            {message.content}
-          </ChatBubble>
-        ))}
-      </div>
+      {messages.map((message: Message) => (
+        <ChatBubble
+          id={message.id}
+          bg={message.role === "assistant" ? "green-300" : "blue-300"}
+          reply={message.role === "assistant"}
+        >
+          <span dangerouslySetInnerHTML={{ __html: message.content }} />
+        </ChatBubble>
+      ))}
     </div>
   );
 }

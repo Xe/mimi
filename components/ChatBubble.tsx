@@ -11,16 +11,16 @@ export interface ChatBubbleProps {
 export default function ChatBubble({
   reply = false,
   bg = "blue-200",
-  fg = "slate-50",
+  fg = "slate-900",
   children,
   id,
 }: ChatBubbleProps) {
   return (
-    <div id={id} className={`mx-auto my-2 w-full ${reply ? "" : "space-y-4"}`}>
+    <div id={id} className={`my-2 w-full ${reply ? "" : "space-y-4"}`}>
       <div className={`flex ${reply ? "justify-start" : "justify-end"}`}>
-        <div className={`flex w-11/12 ${reply ? "" : "flex-row-reverse"}`}>
+        <div className={`${reply ? "" : "flex-row-reverse"}`}>
           <div
-            className={`relative max-w-xl rounded-xl ${
+            className={`relative rounded-xl ${
               reply ? "rounded-tl-none" : "rounded-tr-none"
             } bg-${bg} px-4 py-2`}
           >
