@@ -1,4 +1,4 @@
-import { Button } from "@/components/Button.tsx";
+import Button from "@/components/Button.tsx";
 import { ulid } from "https://deno.land/x/ulid@v0.3.0/mod.ts";
 
 export default function Home() {

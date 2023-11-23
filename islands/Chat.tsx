@@ -1,41 +1,11 @@
-import { ComponentChildren } from "preact";
 import type { Signal } from "@preact/signals";
 import { useEffect, useState } from "preact/hooks";
 import { Message } from "@/lib/chatml.ts";
-import { Button } from "@/components/Button.tsx";
+import Button from "@/components/Button.tsx";
+import ChatBubble from "@/components/ChatBubble.tsx";
 
 interface ChatProps {
   chatID: Signal<string>;
-}
-
-export function ChatBubble({
-  reply = false,
-  bg = "blue-200",
-  fg = "slate-50",
-  children,
-  id,
-}: {
-  reply?: boolean;
-  bg?: string;
-  fg?: string;
-  children: ComponentChildren;
-  id?: string;
-}) {
-  return (
-    <div id={id} className={`mx-auto my-2 w-full ${reply ? "" : "space-y-4"}`}>
-      <div className={`flex ${reply ? "justify-start" : "justify-end"}`}>
-        <div className={`flex w-11/12 ${reply ? "" : "flex-row-reverse"}`}>
-          <div
-            className={`relative max-w-xl rounded-xl ${
-              reply ? "rounded-tl-none" : "rounded-tr-none"
-            } bg-${bg} px-4 py-2`}
-          >
-            <span className={`font-medium text-${fg}`}>{children}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 export default function Chat(props: ChatProps) {
