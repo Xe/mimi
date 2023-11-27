@@ -1,4 +1,4 @@
-FROM ./openhermes-2.5-mistral-7b-16k.q5_k_m.gguf
+FROM ./openhermes-2.5-mistral-7b-16k.f16.gguf
 
 TEMPLATE """
 {{- if .First }}
@@ -15,5 +15,6 @@ SYSTEM """Your name is Mimi. You will answer questions from users when asked. Yo
 PARAMETER stop """<|im_end|>"""
 PARAMETER stop """<|im_start|>"""
 PARAMETER mirostat 2
-PARAMETER num_ctx 4096
-PARAMETER num_predict -2
+PARAMETER num_ctx 16384
+PARAMETER num_gpu 50
+PARAMETER num_predict 4096
